@@ -20,9 +20,6 @@ public class Rec2D {
 
 		generateTexture();
 	}
-	public Rec2D(Vector2 scale2, Vector2 position2, Object color) {
-		//TODO Auto-generated constructor stub
-	}
 	public void changeColor(Color newColor) {
 		_recColor = newColor;
 		//Regenerate our texture using our new color

@@ -12,9 +12,12 @@ public class ImageEditor extends ApplicationAdapter {
 	Rec2D rectangle;
 	Rec2D rectangle2;
 	public Vector2 ScreenSize;
-	
+
+	public static ImageEditor Instance;
+
 	@Override
 	public void create () {
+		Instance = this;
 		batch = new SpriteBatch();
 		ScreenSize = new Vector2(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		InputManager inputManager = new InputManager();
@@ -29,6 +32,7 @@ public class ImageEditor extends ApplicationAdapter {
 			rectangleScale,
 			new Vector2(ScreenSize.x / 2f + rectangleScale.x, ScreenSize.y / 2f - rectangleScale.y / 2f),
 			Color.GREEN);
+		CollisionManager.Instance = new CollisionManager(rectangle, rectangle2);
 		}
 
 	@Override

@@ -10,11 +10,11 @@ public class InputManager implements InputProcessor{
 	public boolean keyUp(int keycode) {return false;}
 	@Override
 	public boolean keyTyped(char character) {return false;}
-	@Override
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 		Rec2D collision = CollisionManager.Instance.getCollision(
-		new Vector2(screenX, ImageEditor.Instance.ScreenSize.y - screenY)
-	);
+		new Vector2(screenX, ImageEditor.Instance.ScreenSize.y - screenY));
+		if(collision == ImageEditor.Instance.rectangle) System.out.println("Pressed button 1");
+		else if(collision == ImageEditor.Instance.rectangle2) System.out.println("Pressed button 2");
 		return true;
 	}
 	@Override
@@ -24,9 +24,7 @@ public class InputManager implements InputProcessor{
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {return false;}
 	@Override
-	public boolean mouseMoved(int screenX, int screenY) {
-		return true;
-		}
+	public boolean mouseMoved(int screenX, int screenY) {return false;}
 	@Override
 	public boolean scrolled(float amountX, float amountY) {return false;}
 }
