@@ -41,6 +41,8 @@ public class InputManager implements InputProcessor{
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer) {
 		mouseMoved(screenX, screenY);
+		if(_currentlyClicked != null)
+			 _currentlyClicked.onClickDragged(new Vector2(screenX, ImageEditor.Instance.ScreenSize.y - screenY));
 		return true;}
 	@Override
 	public boolean mouseMoved(int screenX, int screenY) {

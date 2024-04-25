@@ -40,6 +40,12 @@ public class Button extends Rec2D implements IClickable, IHoverable{
 		generateTexture();
 	}
 	
+	@Override
+	public void onClickDragged(Vector2 clickPosition) {
+	// TODO Auto-generated method stub
+	}
+
+	
 	public void onHovered() {
 		Button Instance = this;
 		while (_state != ButtonState.Hovered) {

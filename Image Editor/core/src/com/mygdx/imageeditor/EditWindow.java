@@ -20,15 +20,23 @@ public class EditWindow extends Rec2D implements IClickable {
 		DoodleTexture = new Texture(_doodleMap);
 	}
 
-	public void onClickDown(Vector2 clickPosition) {
-		System.out.println("Clicked on the Edit Window");
+	public void onClickDown(Vector2 clickPosition)  {
+		paintAtPosition(clickPosition);
 		_doodleMap.drawPixel((int) (clickPosition.x - Position.x),(int) (Scale.y - clickPosition.y));
 		DoodleTexture = new Texture(_doodleMap);
-		System.out.println("drawing??");
 	}
 	@Override
 	public void onClickUp(Vector2 clickPosition) {
 		// TODO Auto-generated method stub
 		
 	}
+	private void paintAtPosition(Vector2 worldPosition) {
+		_doodleMap.drawPixel((int) (worldPosition.x - Position.x),(int) (Scale.y - worldPosition.y));
+		DoodleTexture = new Texture(_doodleMap);
+	}	
+		
+	@Override
+	public void onClickDragged(Vector2 clickPosition){
+		paintAtPosition(clickPosition);
+		}
 }
