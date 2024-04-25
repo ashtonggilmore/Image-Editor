@@ -22,7 +22,6 @@ public class InputManager implements InputProcessor{
 	@Override
 	public boolean keyTyped(char character) {return false;}
 	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-		System.out.println("test");
 		IClickable click = CollisionManager.Instance.getClicked(
 			new Vector2(screenX, ImageEditor.Instance.ScreenSize.y - screenY));
 		_currentlyClicked = click;
@@ -34,7 +33,6 @@ public class InputManager implements InputProcessor{
 		if (_currentlyClicked != null) {
 			_currentlyClicked.onClickUp(new Vector2(screenX, ImageEditor.Instance.ScreenSize.y - screenY));
 		}
-		System.out.println("clicking up");
 		return true;}
 	@Override
 	public boolean touchCancelled(int screenX, int screenY, int pointer, int button) {return false;}

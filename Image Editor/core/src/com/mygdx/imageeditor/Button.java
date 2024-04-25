@@ -28,7 +28,6 @@ public class Button extends Rec2D implements IClickable, IHoverable{
 		
 		_recColor = new Color(_startColor.r / 4f, _startColor.g / 4f, _startColor.b / 4f, 1);
 		_state = ButtonState.Clicked;
-		System.out.println("draw?");
 		generateTexture();
 		}
 	}

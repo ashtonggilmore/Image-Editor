@@ -3,6 +3,8 @@ package com.mygdx.imageeditor;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Pixmap;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -19,6 +21,8 @@ public class ImageEditor extends ApplicationAdapter {
 	@Override
 	public void create () {
 		Instance = this;
+		new ImageInputOutput();
+		Pixmap editMap = ImageInputOutput.Instance.loadImage("blackbuck.bmp");
 		InputManager inputManager = new InputManager();
 		Gdx.input.setInputProcessor(inputManager);
 		batch = new SpriteBatch();
@@ -29,9 +33,10 @@ public class ImageEditor extends ApplicationAdapter {
 		
 		Vector2 editWindowSize = new Vector2(500, ScreenSize.y - 50);
 			_editWindow = new EditWindow(editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), Color.GRAY);
+			
+			
 		CollisionManager collisionManager = new CollisionManager();
-		
-		
+		_editWindow.DoodleTexture = new Texture(editMap);
 		}
 
 	@Override
