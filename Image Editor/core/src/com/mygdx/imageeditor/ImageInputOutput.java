@@ -1,14 +1,21 @@
 package com.mygdx.imageeditor;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 
 public class ImageInputOutput {
+	private byte[] _fileHeader;
+	private Pixmap _pixels;
 	public static ImageInputOutput Instance;
 	public ImageInputOutput() {
 	Instance = this;
+	
 	}
 	public Pixmap loadImage(String filePath) {
+		
 		
 		System.out.println("I'm going to load " + filePath);
 		byte[] fileBytes = Gdx.files.internal(filePath).readBytes();
@@ -28,10 +35,16 @@ public class ImageInputOutput {
 		if(bytesPerPixel != 3) {System.out.println (
 			"Unsupported image pixel format. Incorrect bits per pixel");}
 		
+		_fileHeader = new byte[startPoint];
+		for (int i = 0; i < startPoint && i < fileBytes.length; i++) {
+            _fileHeader[i] = fileBytes[i];}
+		
 		Pixmap pixels = new Pixmap(width, height, Format.RGBA8888);
 		int b,g,r;
 		int x = 0;
 		int y = height;
+		
+		_pixels = pixels;
 		
 		for(int i = startPoint; i < fileIntData.length - 3; i += 3) {
 			b = fileIntData[i];
@@ -51,7 +64,31 @@ public class ImageInputOutput {
 		}
 		
 		
+		
 		return pixels;
 		
 	}
+	public void saveImage(String filePath) throws IOException {
+		FileOutputStream output = new FileOutputStream(filePath);
+		byte[] color;
+		byte[] colorData = new byte[_pixels.getWidth() * _pixels.getHeight() * 3];
+		int colorIndex = 0;
+		for(int y = _pixels.getHeight() - 1; y >= 0; y--) {
+			for(int x = 0; x < _pixels.getWidth(); x++) {
+				color = Util.intToSignedBytes(_pixels.getPixel(x, y));
+				colorData[colorIndex] = color[2];
+				colorData[colorIndex + 1] = color[1];
+				colorData[colorIndex + 2] = color[0];
+				colorIndex += 3;
+				//int tempColor = _pixels.getPixel(x, y);
+		}	
+			
+		}
+		output.write(_fileHeader);
+		output.write(colorData);
+		output.close();
+		
+		
+	}
+	
 }

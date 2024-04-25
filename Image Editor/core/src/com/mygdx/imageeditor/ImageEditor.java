@@ -1,5 +1,7 @@
 package com.mygdx.imageeditor;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -21,6 +23,7 @@ public class ImageEditor extends ApplicationAdapter {
 	@Override
 	public void create () {
 		Instance = this;
+		Util.testIntToSignedBytes();
 		new ImageInputOutput();
 		Pixmap editMap = ImageInputOutput.Instance.loadImage("blackbuck.bmp");
 		InputManager inputManager = new InputManager();
@@ -33,9 +36,17 @@ public class ImageEditor extends ApplicationAdapter {
 		
 		Vector2 editWindowSize = new Vector2(500, ScreenSize.y - 50);
 			_editWindow = new EditWindow(editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), new Texture(editMap));
-			
+		Util.testIntToSignedBytes();	
 			
 		CollisionManager collisionManager = new CollisionManager();
+		
+		try {
+			ImageInputOutput.Instance.saveImage
+			("C:\\Users\\ashto\\Documents\\CS2810\\Final Project\\Image-Editor\\Image Editor\\assets\\teststuff.bmp");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		}
 

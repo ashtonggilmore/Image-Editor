@@ -7,13 +7,16 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 
 public class EditWindow extends Rec2D implements IClickable {
+	private static EditWindow Instance;
 	public Texture DoodleTexture;
-	private Pixmap _doodleMap;
+	public Pixmap _doodleMap;
 	private Vector2 _previousPaintPosition;
-	public static EditWindow Instance;
 
 	public EditWindow(Vector2 scale, Vector2 position, Texture imageTex) {
 		super(scale, position, Color.GRAY);
+		if(Instance == null) {
+			Instance = new EditWindow(position, position, imageTex);
+        }
 		RecTexture = imageTex;
 
 		InputManager.Instance.Clickables.add(this);
