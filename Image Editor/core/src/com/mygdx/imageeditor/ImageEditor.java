@@ -27,16 +27,16 @@ public class ImageEditor extends ApplicationAdapter {
 		Gdx.input.setInputProcessor(inputManager);
 		batch = new SpriteBatch();
 		ScreenSize = new Vector2(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		
+	
 		//temporary button
 		button1 = new Button(new Vector2 (50,50), new Vector2(5,5), Color.YELLOW);
 		
 		Vector2 editWindowSize = new Vector2(500, ScreenSize.y - 50);
-			_editWindow = new EditWindow(editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), Color.GRAY);
+			_editWindow = new EditWindow(editWindowSize, new Vector2(ScreenSize.x - editWindowSize.x, 0), new Texture(editMap));
 			
 			
 		CollisionManager collisionManager = new CollisionManager();
-		_editWindow.DoodleTexture = new Texture(editMap);
+		
 		}
 
 	@Override
